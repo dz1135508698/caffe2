@@ -1,10 +1,10 @@
 A Quick Tutorial on Caffe2's C++ API
 ====================================
 
-*"Blob, Workspace, Operator, Net
-Purveyors of Aids to Magical Deep-Learners
-are proud to present
-THE CAFFE2 C++ TUTORIAL"*
+*"Blob, Workspace, Operator, Net*
+*Purveyors of Aids to Magical Deep-Learners*
+*are proud to present*
+*THE CAFFE2 C++ TUTORIAL"*
 
 # Preface
 
@@ -39,13 +39,13 @@ bool isfloat = myblob.IsType<float>(); // will be false.
 ```
 And we can use Get() to get const pointers to the content.
 ```cpp
-const int* myint_const = myblob.Get<int>();
-LOG(INFO) << *myint_const;  // will be 10.
+const int& myint_const = myblob.Get<int>();
+LOG(INFO) << myint_const;  // will be 10.
 ```
 
 Now, if we call Get() with a wrong type, an exception will be thrown:
 ```cpp
-const float* myfloat = myblob.Get<float>(); // will throw.
+const float& myfloat = myblob.Get<float>(); // will throw an exception.
 ```
 We can always change the underlying storage type by making yet another `GetMutable()` call, like this:
 ```cpp
@@ -57,7 +57,7 @@ Also, if we have a pre-created object, we can use Reset() similar to that of std
 std::vector<int>* pvec = new std::vector<int>();
 myblob.Reset(pvec); // this transfers the ownership
 bool is_vec = myblob.IsType<std::vector<int>>();
-auto* pvec_const = myblob.Get<std::vector<int>>();
+const auto& pvec_const = myblob.Get<std::vector<int>>();
 ```
 Simple as that. Got it? If you would rather run the above code instead of reading, the corresponding source code is at [caffe2/contrib/cpptutorial/blob.cc](https://github.com/caffe2/caffe2/blob/master/caffe2/contrib/cpptutorial/blob.cc).
 
