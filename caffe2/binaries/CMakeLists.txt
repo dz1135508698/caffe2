@@ -12,6 +12,10 @@ caffe2_binary_target("split_db.cc")
 if (USE_CUDA)
   caffe2_binary_target("inspect_gpus.cc")
   caffe2_binary_target("print_core_object_sizes.cc")
+
+  # Core overhead benchmark
+  caffe2_binary_target("core_overhead_benchmark.cc")
+  target_link_libraries(core_overhead_benchmark benchmark)
 endif()
 
 if (USE_ZMQ)
