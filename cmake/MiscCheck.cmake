@@ -103,3 +103,10 @@ endif()
 if (IOS)
   add_definitions("-Wno-deprecated-declarations")
 endif()
+
+# ---[ Using GCC dual abi.
+# See https://gcc.gnu.org/onlinedocs/libstdc++/manual/using_dual_abi.html
+# for details.
+if (NOT USE_CXX11_ABI)
+  add_definitions("-D_GLIBCXX_USE_CXX11_ABI=0")
+endif()
