@@ -9,6 +9,9 @@ cd "$ROOT_DIR"
 APT_INSTALL_CMD='sudo apt-get install -y --no-install-recommends'
 
 if [ "$TRAVIS_OS_NAME" = 'linux' ]; then
+    # work around https://github.com/travis-ci/travis-ci/issues/8363
+    pyenv global system 3.5
+
     ####################
     # apt dependencies #
     ####################
